@@ -14,6 +14,14 @@ function Header() {
     const location = useLocation();
     const disp = useDispatch();
 
+    const closeOffcanvas = () => {
+        const offcanvasEl = document.getElementById('offcanvasRight');
+        const offcanvasInstance = window.bootstrap?.Offcanvas.getInstance(offcanvasEl);
+        if (offcanvasInstance) {
+            offcanvasInstance.hide();
+        }
+    };
+
     return (
         <div>
             <div className='header'>
@@ -34,7 +42,7 @@ function Header() {
 
                             <div className="offcanvas offcanvas-end h-50" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                                 <div className="offcanvas-header">
-                                    <h5 className="offcanvas-title" id="offcanvasRightLabel">  <Link style={{ fontSize: "26px", color: "#034254", fontWeight: "bold", textDecoration: "none" }} >
+                                    <h5 className="offcanvas-title" id="offcanvasRightLabel">  <Link style={{ fontSize: "26px", color: "#034254", fontWeight: "bold", textDecoration: "none" }}   onClick={closeOffcanvas}>
                                         SpendXP
                                     </Link> </h5>
                                     <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"> </button>
@@ -42,8 +50,8 @@ function Header() {
                                 <div className="offcanvas-body ">
 
                                     <nav className='offcanvaslink'>
-                                        <Link to={"/signin"}> <FontAwesomeIcon icon={faArrowCircleRight} /> Sign in</Link>
-                                        <Link to={"/signup"}> <FontAwesomeIcon icon={faUserPlus} /> Sign up</Link>
+                                        <Link to={"/signin"} onClick={closeOffcanvas} > <FontAwesomeIcon icon={faArrowCircleRight} /> Sign in</Link>
+                                        <Link to={"/signup"} onClick={closeOffcanvas}> <FontAwesomeIcon icon={faUserPlus} /> Sign up</Link>
                                     </nav>
                                 </div>
                             </div>
@@ -63,24 +71,55 @@ function Header() {
                                     <button style={{ backgroundColor: "#034254", border: "none" }} onClick={() => disp(logoutUser())}>  <Link to={"/signin"}> <FontAwesomeIcon icon={faArrowCircleRight} /> Sign out</Link>  </button>
                                 </nav>
 
-                                <button className="btn d-lg-none d-md-flex d-sm-flex " style={{ color: "white", fontSize: "30px" }} type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><FontAwesomeIcon icon={faBars} /></button>
 
-                                <div className="offcanvas offcanvas-end h-50" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                                <button className="btn d-lg-none d-md-flex d-sm-flex" style={{ color: "white", fontSize: "30px" }} type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                                    <FontAwesomeIcon icon={faBars} />
+                                </button>
+
+                                <div className="offcanvas offcanvas-end h-50"tabIndex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                                     <div className="offcanvas-header">
-                                        <h5 className="offcanvas-title" id="offcanvasRightLabel">  <Link style={{ fontSize: "26px", color: "#034254", fontWeight: "bold", textDecoration: "none" }} >
-                                            SpendXP
-                                        </Link> </h5>
-                                        <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"> </button>
+                                        <h5 className="offcanvas-title" id="offcanvasRightLabel">
+                                            <Link
+                                                to="/"
+                                                style={{ fontSize: "26px", color: "#034254", fontWeight: "bold", textDecoration: "none" }}
+                                                onClick={closeOffcanvas}
+                                            >
+                                                SpendXP
+                                            </Link>
+                                        </h5>
+                                        <button
+                                            type="button"
+                                            className="btn-close"
+                                            data-bs-dismiss="offcanvas"
+                                            aria-label="Close"
+                                        ></button>
                                     </div>
-                                    <div className="offcanvas-body ">
 
+                                    <div className="offcanvas-body">
                                         <nav className='offcanvaslink'>
-                                            <Link to={"/dashboard"}> <span> <FontAwesomeIcon icon={faDashboard} /></span>Dashboard</Link>
-                                            <Link to={"/addexpense"}> <span><FontAwesomeIcon icon={faAdd} /></span>Add Expense</Link>
-                                            <Link to={"/analytics"}> <span><FontAwesomeIcon icon={faSignal} /></span> Analitics</Link>
-                                            <Link to={"/setting"}><span> <FontAwesomeIcon icon={faGear} /> </span> Setting</Link>
-                                            <button style={{ backgroundColor: "#ffff", border: "none" }} onClick={() => disp(logoutUser())}>  <Link to={"/signin"}> <FontAwesomeIcon icon={faArrowCircleRight} /> Sign out</Link>  </button>
-
+                                            <Link to="/dashboard" onClick={closeOffcanvas}>
+                                                <span><FontAwesomeIcon icon={faDashboard} /></span> Dashboard
+                                            </Link>
+                                            <Link to="/addexpense" onClick={closeOffcanvas}>
+                                                <span><FontAwesomeIcon icon={faAdd} /></span> Add Expense
+                                            </Link>
+                                            <Link to="/analytics" onClick={closeOffcanvas}>
+                                                <span><FontAwesomeIcon icon={faSignal} /></span> Analytics
+                                            </Link>
+                                            <Link to="/setting" onClick={closeOffcanvas}>
+                                                <span><FontAwesomeIcon icon={faGear} /></span> Setting
+                                            </Link>
+                                            <button
+                                                style={{ backgroundColor: "#ffff", border: "none" }}
+                                                onClick={() => {
+                                                    disp(logoutUser());
+                                                    closeOffcanvas();
+                                                }}
+                                            >
+                                                <Link to="/signin" onClick={closeOffcanvas} >
+                                                    <FontAwesomeIcon icon={faArrowCircleRight} /> Sign out
+                                                </Link>
+                                            </button>
                                         </nav>
                                     </div>
                                 </div>

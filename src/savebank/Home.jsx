@@ -30,7 +30,7 @@ function Home() {
 
             {/* banner */}
 
-            <div className="container row banner my-5  m-auto">
+            <div className=" row banner my-5 col-10 m-auto">
                 <div className=' col-md-12 col-lg-6  col-sm-12 row'>
                     <h1 className='col-lg-12 col-sm-12 col-md-12'>Master Your Finances with SpendXP</h1>
                     <p className='col-lg-11 col-sm-12 col-md-12'>Gain clarity on your spending and unlock personalized strategies to grow your savings effortlessly.</p>
@@ -79,8 +79,8 @@ function Home() {
                 </div>
             </div>
 
-            <div className=' banner container m-auto my-5 text-center p-5' >
-                <h1 className='w-100 m-auto my-1 fs-2 fw-bolder'>Simplify Your Financial Future</h1>
+            <div className=' banner container m-auto col-11 my-5 text-center p-3' >
+                <h1 className='w-100 m-auto my-1 fs-2 fw-bolder '>Simplify Your Financial Future</h1>
                 <p>Effortlessly manage your finances with SpendXP’s powerful tools, designed to streamline your journey to financial success.</p>
                 <Buttonprops text={"Start Saving Now"} goto={"/dashboard"} />
             </div>
